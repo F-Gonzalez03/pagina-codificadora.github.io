@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+
+<html>
+
+
+<script>
+
+let palabra = prompt()
+let nuevaPalabra=""
+
+for (let i = 0; i < palabra.length; i++) {
+      if (palabra[i] === "a") {
+        nuevaPalabra += "a";
+        if (i + 1 < palabra.length) {
+            palabra = palabra.slice(0, i + 1) + palabra.slice(i + 2);
+        }
+      } else if (palabra[i] === "e") {
+        nuevaPalabra += "e";
+        if (i + 4 < palabra.length) {
+            palabra = palabra.slice(0, i + 1) + palabra.slice(i + 5);
+        }
+      } else if (palabra[i] === "i") {
+        nuevaPalabra += "i";
+        if (i + 3 < palabra.length) {
+            palabra = palabra.slice(0, i + 1) + palabra.slice(i + 4);
+        }
+      } else if (palabra[i] === "o") {
+        nuevaPalabra += "o";
+        if (i + 3 < palabra.length) {
+            palabra = palabra.slice(0, i + 1) + palabra.slice(i + 4);
+        }
+      } else if (palabra[i] === "u") {
+        nuevaPalabra += "u";
+        if (i + 3 < palabra.length) {
+            palabra = palabra.slice(0, i + 1) + palabra.slice(i + 4);
+        }
+      } else {
+        nuevaPalabra += palabra[i];
+      }
+    }
+
+console.log(nuevaPalabra)
+
+</script>
+
+
+
+
+</html>
