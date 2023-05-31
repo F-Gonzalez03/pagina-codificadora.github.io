@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-
+<!-- añadir tema noche en la v3.0 -->
 <html class="encriptador">
     <head>
         <meta charset="UTF-8">
@@ -19,27 +19,35 @@
             <p> </p>
         </header>
 
-        
-          <textarea class="sinencriptar discrete_scrollbar" placeholder="Ingrese el texto aquí"></textarea>
+        <main>
 
-          <div class="salida">
-            <textarea readonly class="salidaTexto" cols="30" rows="10" placeholder="Ningún mensaje fue encontrado"></textarea>
-            <img class="robot" src="Imagenes/Muneco.png" alt="Imagen de Robot">
-            <p class="renglon2">Ingresa el texto que desees encriptar o desencriptar</p>
-            <button class="copiar boton boton-alternativo">Copiar</button>
-            <!-- <img src="Imagenes/dibujo.png"> -->
-          </div>
+          <section class="inputBotones">
 
-          <p>&#9888; Solo letras minúsculas y sin tildes</p>
-        
+            <textarea class="sinencriptar discrete_scrollbar" placeholder="Ingrese el texto aquí"></textarea>
 
-        <div class="botones">
-        <button class="encriptar boton">Encriptar!</button>
-        <button class="desencriptar boton boton-alternativo" >Desencriptar!</button>
-        
-        </div>
-        
-        
+            <p>&#9888; Solo letras minúsculas y sin tildes</p>
+
+            <div class="botones">
+              <button class="encriptar boton">Encriptar!</button>
+              <button class="desencriptar boton boton-alternativo" >Desencriptar!</button>
+            </div>
+
+          </section>
+
+          <section class="salida">
+
+              <textarea readonly class="salidaTexto" cols="30" rows="10" placeholder="Ningún mensaje fue encontrado"></textarea>
+              
+              <img class="robot" src="Imagenes/Muneco.png" alt="Imagen de Robot">
+              
+              <p class="renglon2">Ingresa el texto que desees encriptar o desencriptar</p>
+              
+              <button class="copiar boton boton-alternativo">Copiar</button>
+              
+          </section>
+
+        </main>
+      
     </body>
 
     <script>
@@ -77,46 +85,41 @@
     respuesta.textContent = nuevaPalabra;
   }
 
-  function decodificar(){
-    if (/[A-ZÁÉÍÓÚÜ]/.test(palabra.value) || /[áéíóúÁÉÍÓÚÜ]/.test(palabra.value)) {
-      alert("No se permiten mayúsculas ni tildes. Por favor, ingrese solo letras minúsculas sin tildes.");
-      return;
-    }
-
-    nuevaPalabra = "";
-    for (let i = 0; i < palabra.value.length; i++) {
-      if (palabra.value[i] === "a") {
-        nuevaPalabra += "a";
-        if (i + 1 < palabra.value.length) {
-            palabra.value = palabra.value.slice(0, i + 1) + palabra.value.slice(i + 2);
-        }
-      } else if (palabra.value[i] === "e") {
-        nuevaPalabra += "e";
-        if (i + 4 < palabra.value.length) {
-            palabra.value = palabra.value.slice(0, i + 1) + palabra.value.slice(i + 5);
-        }
-      } else if (palabra.value[i] === "i") {
-        nuevaPalabra += "i";
-        if (i + 3 < palabra.value.length) {
-            palabra.value = palabra.value.slice(0, i + 1) + palabra.value.slice(i + 4);
-        }
-      } else if (palabra.value[i] === "o") {
-        nuevaPalabra += "o";
-        if (i + 3 < palabra.value.length) {
-            palabra.value = palabra.value.slice(0, i + 1) + palabra.value.slice(i + 4);
-        }
-      } else if (palabra.value[i] === "u") {
-        nuevaPalabra += "u";
-        if (i + 3 < palabra.value.length) {
-            palabra.value = palabra.value.slice(0, i + 1) + palabra.value.slice(i + 4);
-        }
-      } else {
-        nuevaPalabra += palabra.value[i];
-      }
-    }
-    palabra.value=""
-    respuesta.textContent=nuevaPalabra;
+  function decodificar() {
+  if (/[A-ZÁÉÍÓÚÜ]/.test(palabra.value) || /[áéíóúÁÉÍÓÚÜ]/.test(palabra.value)) {
+    alert("No se permiten mayúsculas ni tildes. Por favor, ingrese solo letras minúsculas sin tildes.");
+    return;
   }
+  nuevaPalabra = "";
+  let i = 0;
+  while (i < palabra.value.length) {
+    let letraActual = palabra.value[i];
+    let siguienteLetras = palabra.value.slice(i + 1);
+
+    if (letraActual === "a" && siguienteLetras.startsWith("i")) {
+      nuevaPalabra += letraActual;
+      i += 2; // Avanza 2 posiciones para saltar "a" e "i"
+    } else if (letraActual === "e" && siguienteLetras.startsWith("nter")) {
+      nuevaPalabra += letraActual;
+      i += 5; // Avanza 5 posiciones para saltar "e" y "nter"
+    } else if (letraActual === "i" && siguienteLetras.startsWith("mes")) {
+      nuevaPalabra += letraActual;
+      i += 4; // Avanza 4 posiciones para saltar "i" y "mes"
+    } else if (letraActual === "o" && siguienteLetras.startsWith("ber")) {
+      nuevaPalabra += letraActual;
+      i += 4; // Avanza 4 posiciones para saltar "o" y "ber"
+    } else if (letraActual === "u" && siguienteLetras.startsWith("fat")) {
+      nuevaPalabra += letraActual;
+      i += 4; // Avanza 4 posiciones para saltar "u" y "fat"
+    } else {
+      nuevaPalabra += letraActual;
+      i++; // Avanza 1 posición para pasar a la siguiente letra
+    }
+  }
+
+  palabra.value = "";
+  respuesta.textContent = nuevaPalabra;
+}
 
   function handleKeyDown(event) {
     if (event.key === "Enter") {
@@ -141,5 +144,7 @@
     });
 });
       </script>
+
     </body>
+    
   </html>
