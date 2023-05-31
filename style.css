@@ -390,3 +390,17 @@ body .botones{
   top: 4em;
 }
 }
+
+@media screen and (device-width:1366px) and (device-height:768px) {
+  .renglon2{
+    position: absolute;
+    top: 72%;
+  }
+}
+
+@media screen and (device-width:1280px) and (device-height:720px) {
+  .renglon2{
+    position: absolute;
+    top: 72%;
+  }
+}
